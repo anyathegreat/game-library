@@ -10,10 +10,16 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/todo',
+      name: 'todo',
+      component: () => import('../views/TodoListView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'PageNotFound',
       component: () => import('../views/NotFoundView.vue')
     }
+
     // {
     //   path: '/about',
     //   name: 'about',
