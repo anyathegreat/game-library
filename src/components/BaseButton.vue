@@ -1,7 +1,8 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, defineEmits } from 'vue'
+import BaseSpinner from '@/components/BaseSpinner.vue'
 
-const { vSize, vVariant, vType } = defineProps({
+const { vSize, vVariant, vType, vDisabled, vLoading } = defineProps({
   vSize: {
     type: String,
     default: 'md',
@@ -17,6 +18,14 @@ const { vSize, vVariant, vType } = defineProps({
     default: 'primary',
     validator: (value) =>
       ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'].includes(value)
+  },
+  vDisabled: {
+    type: Boolean,
+    default: false
+  },
+  vLoading: {
+    type: Boolean,
+    default: false
   }
 })
 const buttonClasses = computed(() => {
@@ -39,14 +48,24 @@ const buttonClasses = computed(() => {
     'v-btn-type-warning': vType === 'warning',
     'v-btn-type-info': vType === 'info',
     'v-btn-type-light': vType === 'light',
-    'v-btn-type-dark': vType === 'dark'
-    // TODO:Loading,Disabled,click
+    'v-btn-type-dark': vType === 'dark',
+    // Disabled
+    'v-btn-disabled': vDisabled
+    // Loading
   }
 })
+const isDisabled = computed(() => vDisabled || vLoading)
+const emit = defineEmits(['click'])
+
+function handleClick() {
+  emit('click')
+}
 </script>
 
 <template>
-  <button class="v-btn" :class="buttonClasses"><slot /></button>
+  <button class="v-btn" :class="buttonClasses" :disabled="isDisabled" @click="handleClick">
+    <BaseSpinner v-if="vLoading" vSize="inline" />&nbsp;<slot />
+  </button>
 </template>
 
 <style scoped lang="scss">
@@ -150,5 +169,10 @@ const buttonClasses = computed(() => {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.v-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>
