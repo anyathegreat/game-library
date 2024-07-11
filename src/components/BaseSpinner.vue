@@ -90,14 +90,8 @@ const spinnerClasses = computed(() => {
 
 .v-spinner-color-dark {
   --spinnerColor: #262626;
-  // & .path {
-  //   stroke: #262626;
-  // }
 }
 .v-spinner-color-light {
   --spinnerColor: #d9d9d9;
-  // & .path {
-  //   stroke: #d9d9d9;
-  // }
 }
 </style>
