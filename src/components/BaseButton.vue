@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineEmits } from 'vue'
+import { computed, defineEmits, defineProps } from 'vue'
 import BaseSpinner from '@/components/BaseSpinner.vue'
 
 const { vSize, vVariant, vType, vDisabled, vLoading } = defineProps({
@@ -11,7 +11,7 @@ const { vSize, vVariant, vType, vDisabled, vLoading } = defineProps({
   vVariant: {
     type: String,
     default: 'solid',
-    validator: (value) => ['outline', 'solid', 'borderless', 'link'].includes(value)
+    validator: (value) => ['outline', 'solid', 'borderless', 'link', 'icon'].includes(value)
   },
   vType: {
     type: String,
@@ -40,6 +40,7 @@ const buttonClasses = computed(() => {
     'v-btn-variant-solid': vVariant === 'solid',
     'v-btn-variant-borderless': vVariant === 'borderless',
     'v-btn-variant-link': vVariant === 'link',
+    'v-btn-variant-icon': vVariant === 'icon',
     // Types
     'v-btn-type-primary': vType === 'primary',
     'v-btn-type-secondary': vType === 'secondary',
@@ -64,12 +65,14 @@ function handleClick() {
 
 <template>
   <button class="v-btn" :class="buttonClasses" :disabled="isDisabled" @click="handleClick">
-    <BaseSpinner v-if="vLoading" vSize="inline" />&nbsp;<slot />
+    <template v-if="vVariant === 'icon'"><slot /></template>
+    <template v-else><BaseSpinner v-if="vLoading" vSize="inline" />&nbsp;<slot /></template>
   </button>
 </template>
 
 <style scoped lang="scss">
 .v-btn {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,6 +171,16 @@ function handleClick() {
 
   &:hover {
     text-decoration: underline;
+  }
+}
+.v-btn-variant-icon {
+  padding: 2px;
+  background-color: var(--primaryColor);
+  border: 1px solid transparent;
+  color: var(--secondaryColor);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--primaryColor) 80%, #000000);
   }
 }
 
