@@ -23,7 +23,6 @@ import BasePage from '@/components/BasePage.vue'
   max-width: 800px;
   height: calc(100% - 160px);
   min-height: calc(100% - 160px);
-  background-color: lightgrey;
 }
 .v-conteiner {
   display: flex;

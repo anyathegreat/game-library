@@ -17,7 +17,8 @@
   margin-top: auto;
   width: 100%;
   min-height: 80px;
-  background-color: gray;
+  background-color: var(--footer-bg-color);
+  color: var(--footer-text-color);
 }
 .v-footer-privacy {
   width: 100%;

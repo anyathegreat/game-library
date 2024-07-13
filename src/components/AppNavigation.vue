@@ -22,8 +22,8 @@
   height: 40px;
   min-width: 80px;
   padding: 4px;
-  border: 2px solid var(--navigation-text-color);
+  border: 2px solid var(--header-text-color);
   text-decoration: none;
-  color: var(--navigation-text-color);
+  color: var(--header-text-color);
 }
 </style>
