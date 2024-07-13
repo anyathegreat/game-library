@@ -9,5 +9,6 @@ import { RouterView } from 'vue-router'
 <style scoped>
 .v-page {
   height: 100%;
+  padding: 20px 0;
 }
 </style>

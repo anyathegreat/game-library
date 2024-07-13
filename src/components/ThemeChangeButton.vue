@@ -19,12 +19,13 @@ function toggleTheme() {
 </script>
 
 <template>
-  <BaseButton v-if="currentTheme === 'dark'" vVariant="icon" vType="dark" vSize="sm" @click="toggleTheme">
-    <BaseIcon vInline vIcon="moon" vSize="2em" />
+  <BaseButton vVariant="icon" vType="secondary" vSize="lg" @click="toggleTheme">
+    <BaseIcon v-if="currentTheme === 'dark'" vInline vIcon="moon" vSize="2em" />
+    <BaseIcon v-else vIcon="sun" vSize="2em" vInline />
   </BaseButton>
-  <BaseButton v-else vVariant="icon" vType="light" vSize="sm" @click="toggleTheme">
+  <!-- <BaseButton v-else vVariant="icon" vType="light" vSize="lg" @click="toggleTheme">
     <BaseIcon vIcon="sun" vSize="2em" vInline />
-  </BaseButton>
+  </BaseButton> -->
 </template>
 
 <style scoped></style>

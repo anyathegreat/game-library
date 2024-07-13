@@ -35,12 +35,14 @@ const buttonClasses = computed(() => {
     'v-btn-size-md': vSize === 'md',
     'v-btn-size-lg': vSize === 'lg',
     'v-btn-size-xl': vSize === 'xl',
+
     // Variants
     'v-btn-variant-outline': vVariant === 'outline',
     'v-btn-variant-solid': vVariant === 'solid',
     'v-btn-variant-borderless': vVariant === 'borderless',
     'v-btn-variant-link': vVariant === 'link',
     'v-btn-variant-icon': vVariant === 'icon',
+
     // Types
     'v-btn-type-primary': vType === 'primary',
     'v-btn-type-secondary': vType === 'secondary',
@@ -50,8 +52,10 @@ const buttonClasses = computed(() => {
     'v-btn-type-info': vType === 'info',
     'v-btn-type-light': vType === 'light',
     'v-btn-type-dark': vType === 'dark',
+
     // Disabled
     'v-btn-disabled': vDisabled
+
     // Loading
   }
 })
@@ -69,6 +73,38 @@ function handleClick() {
     <template v-else><BaseSpinner v-if="vLoading" vSize="inline" />&nbsp;<slot /></template>
   </button>
 </template>
+
+<!-- 
+  --button-bg-color-primary: var(--primaryContainer);
+  --button-text-color-primary: var(--onPrimaryContainer);
+  --button-border-color-primary: var(--primary);
+  --button-shadow-color-primary: var(--primary);
+
+  --button-bg-color-secondary: var(--secondaryContainer);
+  --button-text-color-secondary: var(--onSecondaryContainer);
+  --button-border-color-secondary: var(--secondary);
+  --button-shadow-color-secondary: var(--secondary);
+
+  --button-bg-color-tertiary: var(--tertiaryContainer);
+  --button-text-color-tertiary: var(--onTertiaryContainer);
+  --button-border-color-tertiary: var(--tertiary);
+  --button-shadow-color-tertiary: var(--tertiary);
+
+  --button-bg-color-error: var(--errorContainer);
+  --button-text-color-error: var(--onErrorContainer);
+  --button-border-color-error: var(--error);
+  --button-shadow-color-error: var(--error);
+
+  --button-bg-color-disabled: var(--surfaceContainer);
+  --button-text-color-disabled: var(--onSurfaceVariant);
+  --button-border-color-disabled: var(--outlineVariant);
+  --button-shadow-color-disabled: var(--outlineVariant);
+
+  --button-bg-color-neutral: var(--inverseSurface);
+  --button-text-color-neutral: var(--inverseOnSurface);
+  --button-border-color-neutral: var(--inverseOnSurface);
+  --button-shadow-color-neutral: var(--inverseOnSurface);
+-->
 
 <style scoped lang="scss">
 .v-btn {
@@ -103,36 +139,36 @@ function handleClick() {
 }
 
 .v-btn-type-primary {
-  --primaryColor: #add8e6;
-  --secondaryColor: #000000;
+  --primaryColor: var(--button-bg-color-primary);
+  --secondaryColor: var(--button-text-color-primary);
 }
 .v-btn-type-secondary {
-  --primaryColor: #ffc67d;
-  --secondaryColor: #000000;
+  --primaryColor: var(--button-bg-color-secondary);
+  --secondaryColor: var(--button-text-color-secondary);
 }
 .v-btn-type-success {
-  --primaryColor: #b2fffc;
+  --primaryColor: #b2ffb2;
   --secondaryColor: #000000;
 }
 .v-btn-type-danger {
-  --primaryColor: #ffa07a;
-  --secondaryColor: #000000;
+  --primaryColor: var(--button-bg-color-error);
+  --secondaryColor: var(--button-text-color-error);
 }
 .v-btn-type-warning {
-  --primaryColor: #ffffe0;
-  --secondaryColor: #000000;
+  --primaryColor: var(--button-bg-color-tertiary);
+  --secondaryColor: var(--button-text-color-tertiary);
 }
 .v-btn-type-info {
   --primaryColor: #87cefa;
   --secondaryColor: #000000;
 }
-.v-btn-type-light {
-  --primaryColor: #e5e5ea;
-  --secondaryColor: #000000;
-}
 .v-btn-type-dark {
-  --primaryColor: #4d4d4d;
-  --secondaryColor: #afafaf;
+  --primaryColor: var(--button-bg-color-dark);
+  --secondaryColor: var(--button-text-color-dark);
+}
+.v-btn-type-light {
+  --primaryColor: var(--button-bg-color-light);
+  --secondaryColor: var(--button-text-color-light);
 }
 
 .v-btn-variant-outline {

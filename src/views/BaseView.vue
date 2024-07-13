@@ -17,12 +17,10 @@ import BasePage from '@/components/BasePage.vue'
 <style scoped>
 .v-content {
   flex-grow: 1;
-  display: flex;
-  gap: 20px;
   width: 100%;
-  max-width: 800px;
-  height: calc(100% - 160px);
-  min-height: calc(100% - 160px);
+  max-width: 1080px;
+  /* height: calc(100% - 160px); */
+  /* min-height: calc(100% - 160px); */
 }
 .v-conteiner {
   display: flex;
@@ -31,6 +29,6 @@ import BasePage from '@/components/BasePage.vue'
   position: relative;
   width: 100%;
   height: max-content;
-  min-height: 768px;
+  min-height: 100dvh;
 }
 </style>
