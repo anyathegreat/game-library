@@ -1,69 +1,69 @@
 <script setup>
-import { computed, defineEmits, defineProps } from 'vue'
-import BaseSpinner from '@/components/BaseSpinner.vue'
+import { computed, defineEmits, defineProps } from "vue";
+import BaseSpinner from "@/components/BaseSpinner.vue";
 
 const { vSize, vVariant, vType, vDisabled, vLoading } = defineProps({
   vSize: {
     type: String,
-    default: 'md',
-    validator: (value) => ['sm', 'md', 'lg', 'xl'].includes(value)
+    default: "md",
+    validator: (value) => ["sm", "md", "lg", "xl"].includes(value),
   },
   vVariant: {
     type: String,
-    default: 'solid',
-    validator: (value) => ['outline', 'solid', 'borderless', 'link', 'icon'].includes(value)
+    default: "solid",
+    validator: (value) => ["outline", "solid", "borderless", "link", "icon"].includes(value),
   },
   vType: {
     type: String,
-    default: 'primary',
+    default: "primary",
     validator: (value) =>
-      ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'].includes(value)
+      ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].includes(value),
   },
   vDisabled: {
     type: Boolean,
-    default: false
+    default: false,
   },
   vLoading: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 const buttonClasses = computed(() => {
   return {
     // Sizes
-    'v-btn-size-sm': vSize === 'sm',
-    'v-btn-size-md': vSize === 'md',
-    'v-btn-size-lg': vSize === 'lg',
-    'v-btn-size-xl': vSize === 'xl',
+    "v-btn-size-sm": vSize === "sm",
+    "v-btn-size-md": vSize === "md",
+    "v-btn-size-lg": vSize === "lg",
+    "v-btn-size-xl": vSize === "xl",
 
     // Variants
-    'v-btn-variant-outline': vVariant === 'outline',
-    'v-btn-variant-solid': vVariant === 'solid',
-    'v-btn-variant-borderless': vVariant === 'borderless',
-    'v-btn-variant-link': vVariant === 'link',
-    'v-btn-variant-icon': vVariant === 'icon',
+    "v-btn-variant-outline": vVariant === "outline",
+    "v-btn-variant-solid": vVariant === "solid",
+    "v-btn-variant-borderless": vVariant === "borderless",
+    "v-btn-variant-link": vVariant === "link",
+    "v-btn-variant-icon": vVariant === "icon",
 
     // Types
-    'v-btn-type-primary': vType === 'primary',
-    'v-btn-type-secondary': vType === 'secondary',
-    'v-btn-type-success': vType === 'success',
-    'v-btn-type-danger': vType === 'danger',
-    'v-btn-type-warning': vType === 'warning',
-    'v-btn-type-info': vType === 'info',
-    'v-btn-type-light': vType === 'light',
-    'v-btn-type-dark': vType === 'dark',
+    "v-btn-type-primary": vType === "primary",
+    "v-btn-type-secondary": vType === "secondary",
+    "v-btn-type-success": vType === "success",
+    "v-btn-type-danger": vType === "danger",
+    "v-btn-type-warning": vType === "warning",
+    "v-btn-type-info": vType === "info",
+    "v-btn-type-light": vType === "light",
+    "v-btn-type-dark": vType === "dark",
 
     // Disabled
-    'v-btn-disabled': vDisabled
+    "v-btn-disabled": vDisabled,
 
     // Loading
-  }
-})
-const isDisabled = computed(() => vDisabled || vLoading)
-const emit = defineEmits(['click'])
+  };
+});
+const isDisabled = computed(() => vDisabled || vLoading);
+const emit = defineEmits(["click"]);
 
 function handleClick() {
-  emit('click')
+  emit("click");
 }
 </script>
 
@@ -108,6 +108,7 @@ function handleClick() {
 
 <style scoped lang="scss">
 .v-btn {
+  box-sizing: border-box;
   position: relative;
   display: flex;
   justify-content: center;
@@ -210,7 +211,8 @@ function handleClick() {
   }
 }
 .v-btn-variant-icon {
-  padding: 2px;
+  border-radius: 12px;
+  padding: 4px;
   background-color: var(--primaryColor);
   border: 1px solid transparent;
   color: var(--secondaryColor);

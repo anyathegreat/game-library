@@ -1,24 +1,24 @@
 <script setup>
-import { computed, defineProps } from 'vue'
+import { computed, defineProps } from "vue";
 
 const { vBorder, vShadow } = defineProps({
   vBorder: {
     type: Boolean,
-    default: true
+    default: true,
   },
   vShadow: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 
 const cardClasses = computed(() => {
   return {
-    'v-card': true,
-    'v-card-border': vBorder,
-    'v-card-shadow': vShadow
-  }
-})
+    "v-card": true,
+    "v-card-border": vBorder,
+    "v-card-shadow": vShadow,
+  };
+});
 </script>
 
 <template>

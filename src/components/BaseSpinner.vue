@@ -1,34 +1,34 @@
 <script setup>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 const { vSize, vColor } = defineProps({
   vSize: {
     type: String,
-    default: 'md',
-    validator: (value) => ['sm', 'md', 'lg', 'xl', 'inline'].includes(value)
+    default: "md",
+    validator: (value) => ["sm", "md", "lg", "xl", "inline"].includes(value),
   },
   vColor: {
     type: String,
-    default: 'dark',
-    validator: (value) => ['dark', 'light'].includes(value)
-  }
-})
+    default: "dark",
+    validator: (value) => ["dark", "light"].includes(value),
+  },
+});
 
 const spinnerClasses = computed(() => {
   return {
     // Spinner
-    'v-spinner': true,
+    "v-spinner": true,
     // Sizes
-    'v-spinner-size-sm': vSize === 'sm',
-    'v-spinner-size-md': vSize === 'md',
-    'v-spinner-size-lg': vSize === 'lg',
-    'v-spinner-size-xl': vSize === 'xl',
-    'v-spinner-size-inline': vSize === 'inline',
+    "v-spinner-size-sm": vSize === "sm",
+    "v-spinner-size-md": vSize === "md",
+    "v-spinner-size-lg": vSize === "lg",
+    "v-spinner-size-xl": vSize === "xl",
+    "v-spinner-size-inline": vSize === "inline",
     // Color
-    'v-spinner-color-dark': vColor === 'dark',
-    'v-spinner-color-light': vColor === 'light'
-  }
-})
+    "v-spinner-color-dark": vColor === "dark",
+    "v-spinner-color-light": vColor === "light",
+  };
+});
 </script>
 
 <template>

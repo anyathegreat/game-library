@@ -1,6 +1,6 @@
 <script setup>
-import AppNavigation from '@/components/AppNavigation.vue'
-import ThemeChangeButton from '@/components/ThemeChangeButton.vue'
+import AppNavigation from "@/components/AppNavigation.vue";
+import ThemeChangeButton from "@/components/ThemeChangeButton.vue";
 </script>
 
 <template>

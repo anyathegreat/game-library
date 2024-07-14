@@ -1,7 +1,7 @@
 <script setup>
-import AppHeader from '@/components/AppHeader.vue'
-import AppFooter from '@/components/AppFooter.vue'
-import BasePage from '@/components/BasePage.vue'
+import AppHeader from "@/components/AppHeader.vue";
+import AppFooter from "@/components/AppFooter.vue";
+import BasePage from "@/components/BasePage.vue";
 </script>
 
 <template>

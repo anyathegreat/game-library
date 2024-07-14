@@ -1,26 +1,26 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
 
-import HomePage from '@/pages/HomePage.vue'
-import BaseView from '@/views/BaseView.vue'
-import GameDetailsPage from '@/pages/GameDetailsPage.vue'
+import HomePage from "@/pages/HomePage.vue";
+import BaseView from "@/views/BaseView.vue";
+import GameDetailsPage from "@/pages/GameDetailsPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: "/",
       component: BaseView,
       children: [
         {
-          path: '/',
-          component: HomePage
+          path: "/",
+          component: HomePage,
         },
         {
-          path: '/game-details',
-          component: GameDetailsPage
-        }
-      ]
-    }
+          path: "/game-details",
+          component: GameDetailsPage,
+        },
+      ],
+    },
     // {
     //   path: '/about',
     //   name: 'about',
@@ -29,7 +29,7 @@ const router = createRouter({
     //   // which is lazy-loaded when the route is visited.
     //   component: () => import('../views/AboutView.vue')
     // }
-  ]
-})
+  ],
+});
 
-export default router
+export default router;

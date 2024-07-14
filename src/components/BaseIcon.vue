@@ -1,52 +1,52 @@
 <script setup>
-import { computed, defineProps } from 'vue'
-import SunIcon from '@/components/icons/SunIcon.vue'
-import MoonIcon from '@/components/icons/MoonIcon.vue'
+import { computed, defineProps } from "vue";
+import SunIcon from "@/components/icons/SunIcon.vue";
+import MoonIcon from "@/components/icons/MoonIcon.vue";
 
 const { vColor, vSize, vWidth, vHeight, vInline, vIcon } = defineProps({
   vSize: {
     type: String,
-    default: '32px'
+    default: "32px",
   },
   vColor: {
     type: String,
-    default: 'inherit',
+    default: "inherit",
     validator: (value) => {
-      if (value === 'inherit') return true
-      if (value.length !== 7) return false
-      if (value.at(0) !== '#') return false
+      if (value === "inherit") return true;
+      if (value.length !== 7) return false;
+      if (value.at(0) !== "#") return false;
       if (
         value
           .slice(1)
-          .split('')
-          .some((currentChar) => !'0123456789abcdefABCDEF'.includes(currentChar))
+          .split("")
+          .some((currentChar) => !"0123456789abcdefABCDEF".includes(currentChar))
       )
-        return false
-      return true
-    }
+        return false;
+      return true;
+    },
   },
   vWidth: {
-    type: String
+    type: String,
   },
   vHeight: {
-    type: String
+    type: String,
   },
   vInline: {
     type: Boolean,
-    default: false
+    default: false,
   },
   vIcon: {
     type: String,
-    validator: (value) => ['sun', 'moon'].includes(value)
-  }
-})
+    validator: (value) => ["sun", "moon"].includes(value),
+  },
+});
 
 const iconClasses = computed(() => {
   return {
-    'v-icon-container': true,
-    'v-icon-inline': vInline
-  }
-})
+    "v-icon-container": true,
+    "v-icon-inline": vInline,
+  };
+});
 </script>
 
 <template>

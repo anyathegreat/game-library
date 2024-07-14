@@ -53,7 +53,7 @@
   --black: #191112;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --primary: #ffb2bf;
   --surfaceTint: #ffb2bf;
   --onPrimary: #561d2b;

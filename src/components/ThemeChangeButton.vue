@@ -1,19 +1,19 @@
 <script setup>
-import { ref } from 'vue'
-import BaseButton from '@/components/BaseButton.vue'
-import BaseIcon from '@/components/BaseIcon.vue'
+import { ref } from "vue";
+import BaseButton from "@/components/BaseButton.vue";
+import BaseIcon from "@/components/BaseIcon.vue";
 
-const currentTheme = ref(localStorage.getItem('theme') || 'light')
+const currentTheme = ref(localStorage.getItem("theme") || "light");
 
 function toggleTheme() {
-  if (currentTheme.value === 'dark') {
-    currentTheme.value = 'light'
-    document.body.setAttribute('data-theme', 'light')
-    localStorage.setItem('theme', 'light')
+  if (currentTheme.value === "dark") {
+    currentTheme.value = "light";
+    document.body.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
   } else {
-    currentTheme.value = 'dark'
-    document.body.setAttribute('data-theme', 'dark')
-    localStorage.setItem('theme', 'dark')
+    currentTheme.value = "dark";
+    document.body.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
   }
 }
 </script>
