@@ -30,7 +30,6 @@ export const useUserSettingsStore = defineStore("userSettings", {
       this.theme = value;
       document.body.setAttribute("data-theme", value);
       localStorage.setItem("theme", value);
-      console.log(value, this.theme);
     },
     changefontSize(value) {
       this.fontSize = value;
