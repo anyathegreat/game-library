@@ -10,8 +10,8 @@ const userSettingsStore = useUserSettingsStore();
 const { theme } = storeToRefs(userSettingsStore);
 const { changeTheme } = userSettingsStore;
 
-function toggleTheme(value) {
-  if (value === THEME_KEYS.dark) {
+function toggleTheme() {
+  if (theme.value === THEME_KEYS.dark) {
     changeTheme(THEME_KEYS.light);
   } else {
     changeTheme(THEME_KEYS.dark);
@@ -20,7 +20,7 @@ function toggleTheme(value) {
 </script>
 
 <template>
-  <BaseButton vVariant="icon" vType="secondary" vSize="lg" @click="toggleTheme(theme)">
+  <BaseButton vVariant="icon" vType="secondary" vSize="lg" @click="toggleTheme">
     <BaseIcon v-if="theme === THEME_KEYS.dark" vInline vIcon="moon" vSize="2em" />
     <BaseIcon v-else vInline vIcon="sun" vSize="2em" />
   </BaseButton>
