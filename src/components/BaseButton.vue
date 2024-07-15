@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineEmits, defineProps } from "vue";
+import { computed } from "vue";
 import BaseSpinner from "@/components/BaseSpinner.vue";
 
 const { vSize, vVariant, vType, vDisabled, vLoading } = defineProps({

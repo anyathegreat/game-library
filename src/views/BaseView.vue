@@ -5,7 +5,7 @@ import BasePage from "@/components/BasePage.vue";
 </script>
 
 <template>
-  <div class="v-conteiner">
+  <div class="v-container">
     <AppHeader />
     <div class="v-content">
       <BasePage />
@@ -22,7 +22,7 @@ import BasePage from "@/components/BasePage.vue";
   /* height: calc(100% - 160px); */
   /* min-height: calc(100% - 160px); */
 }
-.v-conteiner {
+.v-container {
   display: flex;
   flex-direction: column;
   align-items: center;

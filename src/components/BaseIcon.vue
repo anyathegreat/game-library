@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineProps } from "vue";
+import { computed } from "vue";
 import SunIcon from "@/components/icons/SunIcon.vue";
 import MoonIcon from "@/components/icons/MoonIcon.vue";
 
