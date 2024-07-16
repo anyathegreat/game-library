@@ -1,35 +1,57 @@
 import { defineStore } from "pinia";
 
+import { getObjectFromLocalStorage } from "@/utils";
+
+const savedUserSettings = getObjectFromLocalStorage("userSettings");
+
+const initValues = {
+  theme: "light",
+  language: "en",
+  fontSize: "md",
+  defaultListSortOrder: "",
+  defaultListFilterSettings: [],
+  hideEmptyLists: false,
+  ...savedUserSettings,
+};
+
 export const useUserSettingsStore = defineStore("userSettings", {
   state: () => ({
     /**@type {'light' | 'dark'}*/
-    theme: localStorage.getItem("theme") || "light",
+    theme: initValues.theme,
     /**@type {'en' | 'ru'}*/
-    language: "en",
+    language: initValues.language,
     /**@type {'sm' | 'md' | 'lg'}*/
-    fontSize: "md",
+    fontSize: initValues.fontSize,
     /**@type {'alphabetical' | 'date_added'}*/
-    defaultListSortOrder: "",
+    defaultListSortOrder: initValues.defaultListSortOrder,
     /**@type {( 'is_completed' | 'is_favourite' )[]}*/
-    defaultListFilterSettings: [],
+    defaultListFilterSettings: initValues.defaultListFilterSettings,
     /**@type {true | false}*/
-    hideEmptyLists: false,
+    hideEmptyLists: initValues.hideEmptyLists,
   }),
   getters: {
     userSettings(state) {
       return {
-        ...state,
+        theme: state.theme,
+        language: state.language,
+        fontSize: state.fontSize,
+        defaultListSortOrder: state.defaultListSortOrder,
+        defaultListFilterSettings: state.defaultListFilterSettings,
+        hideEmptyLists: state.hideEmptyLists,
       };
     },
   },
   actions: {
+    saveToLocalStorage() {
+      localStorage.setItem("userSettings", JSON.stringify(this.userSettings));
+    },
     changeLanguage(value) {
       this.language = value;
     },
     changeTheme(value) {
       this.theme = value;
       document.body.setAttribute("data-theme", value);
-      localStorage.setItem("theme", value);
+      this.saveToLocalStorage();
     },
     changefontSize(value) {
       this.fontSize = value;
