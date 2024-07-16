@@ -2,6 +2,7 @@ import "./assets/reset.css";
 import "./assets/normalize.css";
 import "./assets/variables.css";
 import "./assets/main.css";
+import "./assets/fonts.css";
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";

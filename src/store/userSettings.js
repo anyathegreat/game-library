@@ -53,8 +53,11 @@ export const useUserSettingsStore = defineStore("userSettings", {
       document.body.setAttribute("data-theme", value);
       this.saveToLocalStorage();
     },
-    changefontSize(value) {
+    changeFontSize(value) {
       this.fontSize = value;
+      document.documentElement.classList.remove("font-size-sm", "font-size-md", "font-size-lg");
+      document.documentElement.classList.add("font-size-" + value);
+      this.saveToLocalStorage();
     },
     changeHideEmptyLists(value) {
       this.hideEmptyLists = value;

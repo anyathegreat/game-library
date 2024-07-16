@@ -4,6 +4,7 @@
   <nav class="v-nav">
     <RouterLink class="v-nav-item" to="/">Home</RouterLink>
     <RouterLink class="v-nav-item" to="/game-details">GameDetails</RouterLink>
+    <RouterLink class="v-nav-item" to="/user-settings">Settings</RouterLink>
   </nav>
 </template>
 

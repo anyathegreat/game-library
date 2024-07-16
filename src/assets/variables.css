@@ -110,7 +110,9 @@
 
 body {
   /* BODY */
-  --body-bg: var(--surfaceDim);
+  --body-bg-color: var(--surfaceDim);
+  --body-text-color: var(--onSurface);
+  --hr-color: var(--outlineVariant);
 
   /* HEADER */
   --header-text-color: var(--onSurface);

@@ -5,10 +5,11 @@ import { storeToRefs } from "pinia";
 import { useUserSettingsStore } from "./store/userSettings";
 
 const userSettingsStore = useUserSettingsStore();
-const { theme } = storeToRefs(userSettingsStore);
+const { theme, fontSize } = storeToRefs(userSettingsStore);
 
 onMounted(() => {
   document.body.setAttribute("data-theme", theme.value);
+  document.documentElement.classList.add("font-size-" + fontSize.value);
 });
 </script>
 
