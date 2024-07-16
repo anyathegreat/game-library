@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "@/pages/HomePage.vue";
 import BaseView from "@/views/BaseView.vue";
 import GameDetailsPage from "@/pages/GameDetailsPage.vue";
+import SettingsPage from "@/pages/SettingsPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,10 @@ const router = createRouter({
         {
           path: "/game-details",
           component: GameDetailsPage,
+        },
+        {
+          path: "/user-settings",
+          component: SettingsPage,
         },
       ],
     },
