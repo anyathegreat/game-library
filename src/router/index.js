@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import HomePage from "@/pages/HomePage.vue";
 import BaseView from "@/views/BaseView.vue";
+import PageNotFoundView from "@/views/PageNotFoundView.vue";
+import HomePage from "@/pages/HomePage.vue";
 import GameDetailsPage from "@/pages/GameDetailsPage.vue";
 import SettingsPage from "@/pages/SettingsPage.vue";
 
@@ -26,6 +27,7 @@ const router = createRouter({
         },
       ],
     },
+    { path: "/:pathMatch(.*)*", component: PageNotFoundView },
     // {
     //   path: '/about',
     //   name: 'about',
