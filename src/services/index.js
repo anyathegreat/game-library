@@ -1,3 +1,4 @@
 import { CatsService } from "./CatsService";
+import { DogsService } from "./DogsService";
 
-export { CatsService };
+export { CatsService, DogsService };
