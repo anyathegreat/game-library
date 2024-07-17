@@ -5,6 +5,7 @@ import PageNotFoundView from "@/views/PageNotFoundView.vue";
 import HomePage from "@/pages/HomePage.vue";
 import GameDetailsPage from "@/pages/GameDetailsPage.vue";
 import CatsGalleryPage from "@/pages/CatsGalleryPage.vue";
+import DogsGalleryPage from "@/pages/DogsGalleryPage.vue";
 import SettingsPage from "@/pages/SettingsPage.vue";
 
 const router = createRouter({
@@ -25,6 +26,10 @@ const router = createRouter({
         {
           path: "/cats-gallery",
           component: CatsGalleryPage,
+        },
+        {
+          path: "/dogs-gallery",
+          component: DogsGalleryPage,
         },
         {
           path: "/user-settings",

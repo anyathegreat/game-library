@@ -1,18 +1,18 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { CatsService } from "@/services";
+import { DogsService } from "@/services";
 import BaseButton from "@/components/BaseButton.vue";
 import BaseSpinner from "@/components/BaseSpinner.vue";
 import { notification } from "@/utils";
 
-const catImages = ref([]);
+const dogImages = ref([]);
 const loading = ref(false);
 
-async function fetchCatFacts() {
+async function fetchDogFacts() {
   try {
     loading.value = true;
-    const catFactsResponse = await CatsService.getCatImages();
-    catImages.value = catFactsResponse.data;
+    const dogFactsResponse = await DogsService.getDogsImages();
+    dogImages.value = dogFactsResponse.data;
     setTimeout(() => {
       loading.value = false;
     }, 2000);
@@ -31,24 +31,24 @@ const containerClasses = computed(() => {
 });
 
 onMounted(async () => {
-  await fetchCatFacts();
+  await fetchDogFacts();
 });
 </script>
 
 <template>
-  <h1>Cats Gallery</h1>
+  <h1>Dogs Gallery</h1>
 
   <h2>
-    Cats
-    <BaseButton vInline :vDisabled="loading" vVariant="solid" vType="secondary" vSize="sm" @click="fetchCatFacts">
+    Dogs
+    <BaseButton vInline :vDisabled="loading" vVariant="solid" vType="secondary" vSize="sm" @click="fetchDogFacts">
       Refresh
     </BaseButton>
   </h2>
   <hr />
   <BaseSpinner v-if="loading" vSize="lg" vColor="light" />
   <div :class="containerClasses">
-    <div v-for="catImage in catImages" :key="catImage.id" class="v-cat-image-container">
-      <img :src="catImage.url" />
+    <div v-for="dogImage in dogImages" :key="dogImage.id" class="v-dog-image-container">
+      <img :src="dogImage.url" />
     </div>
   </div>
 </template>
@@ -84,7 +84,7 @@ onMounted(async () => {
   }
 }
 
-.v-cat-image-container {
+.v-dog-image-container {
   height: 300px;
   margin-bottom: 14px;
 
