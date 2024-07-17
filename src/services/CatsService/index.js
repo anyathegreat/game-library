@@ -1,7 +1,8 @@
+import { config } from "@/_config";
 import { AxiosClient } from "@/services/AxiosClient";
 
-const API_URL = "https://api.thecatapi.com/v1";
-const HEADERS = { "x-api-key": "live_9MMtsGXs1bdyXQ4DqUhnLjB6mUejOTxoKAXlLiMcqyqND7JOswH42wnseUM2qLNL" };
+const API_URL = config.CATS_API_URL;
+const HEADERS = { "x-api-key": config.CATS_API_KEY };
 
 class CatsService extends AxiosClient {
   constructor(url, baseHeaders) {
