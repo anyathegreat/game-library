@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { getObjectFromLocalStorage } from "@/utils";
+import { getObjectFromLocalStorage, notification } from "@/utils";
 
 const savedUserSettings = getObjectFromLocalStorage("userSettings");
 
@@ -42,16 +42,17 @@ export const useUserSettingsStore = defineStore("userSettings", {
     },
   },
   actions: {
-    saveToLocalStorage() {
+    saveToLocalStorage(showAlert = true) {
       localStorage.setItem("userSettings", JSON.stringify(this.userSettings));
+      showAlert && notification.success("Settings saved!");
     },
     changeLanguage(value) {
       this.language = value;
     },
-    changeTheme(value) {
+    changeTheme(value, showAlert) {
       this.theme = value;
       document.body.setAttribute("data-theme", value);
-      this.saveToLocalStorage();
+      this.saveToLocalStorage(showAlert);
     },
     changeFontSize(value) {
       this.fontSize = value;

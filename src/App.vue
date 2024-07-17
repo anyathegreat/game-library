@@ -15,7 +15,7 @@ onMounted(() => {
 
 <template>
   <RouterView />
-  <notifications position="top right" />
+  <notifications position="top right" class="custom-notification" />
 </template>
 
 <style scoped></style>

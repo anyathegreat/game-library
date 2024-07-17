@@ -12,9 +12,9 @@ const { changeTheme } = userSettingsStore;
 
 function toggleTheme() {
   if (theme.value === THEME_KEYS.dark) {
-    changeTheme(THEME_KEYS.light);
+    changeTheme(THEME_KEYS.light, false);
   } else {
-    changeTheme(THEME_KEYS.dark);
+    changeTheme(THEME_KEYS.dark, false);
   }
 }
 </script>
