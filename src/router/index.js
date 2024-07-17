@@ -4,6 +4,7 @@ import BaseView from "@/views/BaseView.vue";
 import PageNotFoundView from "@/views/PageNotFoundView.vue";
 import HomePage from "@/pages/HomePage.vue";
 import GameDetailsPage from "@/pages/GameDetailsPage.vue";
+import CatsGalleryPage from "@/pages/CatsGalleryPage.vue";
 import SettingsPage from "@/pages/SettingsPage.vue";
 
 const router = createRouter({
@@ -20,6 +21,10 @@ const router = createRouter({
         {
           path: "/game-details",
           component: GameDetailsPage,
+        },
+        {
+          path: "/cats-gallery",
+          component: CatsGalleryPage,
         },
         {
           path: "/user-settings",

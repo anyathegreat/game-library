@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import BaseSpinner from "@/components/BaseSpinner.vue";
 
-const { vSize, vVariant, vType, vDisabled, vLoading } = defineProps({
+const { vSize, vVariant, vType, vDisabled, vLoading, vInline } = defineProps({
   vSize: {
     type: String,
     default: "md",
@@ -24,6 +24,10 @@ const { vSize, vVariant, vType, vDisabled, vLoading } = defineProps({
     default: false,
   },
   vLoading: {
+    type: Boolean,
+    default: false,
+  },
+  vInline: {
     type: Boolean,
     default: false,
   },
@@ -56,7 +60,8 @@ const buttonClasses = computed(() => {
     // Disabled
     "v-btn-disabled": vDisabled,
 
-    // Loading
+    // Inline
+    "v-btn-inline": vInline,
   };
 });
 const isDisabled = computed(() => vDisabled || vLoading);
@@ -70,7 +75,10 @@ function handleClick() {
 <template>
   <button class="v-btn" :class="buttonClasses" :disabled="isDisabled" @click="handleClick">
     <template v-if="vVariant === 'icon'"><slot /></template>
-    <template v-else><BaseSpinner v-if="vLoading" vSize="inline" />&nbsp;<slot /></template>
+    <template v-else>
+      <template v-if="vLoading"><BaseSpinner vSize="inline" />&nbsp;</template>
+      <slot />
+    </template>
   </button>
 </template>
 
@@ -225,5 +233,9 @@ function handleClick() {
 .v-btn-disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.v-btn-inline {
+  display: inline-flex;
 }
 </style>
