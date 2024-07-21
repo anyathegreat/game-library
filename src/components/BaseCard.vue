@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 
-const { vBorder, vShadow } = defineProps({
+const { vBorder, vShadow, vOverflow } = defineProps({
   vBorder: {
     type: Boolean,
     default: true,
@@ -9,6 +9,11 @@ const { vBorder, vShadow } = defineProps({
   vShadow: {
     type: Boolean,
     default: false,
+  },
+  vOverflow: {
+    type: String,
+    default: "auto",
+    validator: (value) => ["auto", "scroll", "hidden"].includes(value),
   },
 });
 
@@ -19,11 +24,19 @@ const cardClasses = computed(() => {
     "v-card-shadow": vShadow,
   };
 });
+const contentClasses = computed(() => {
+  return {
+    "v-card-content": true,
+    "v-card-overflow-auto": vOverflow === "auto",
+    "v-card-overflow-scroll": vOverflow === "scroll",
+    "v-card-overflow-hidden": vOverflow === "hidden",
+  };
+});
 </script>
 
 <template>
   <div :class="cardClasses">
-    <div class="v-card-content">
+    <div :class="contentClasses">
       <slot />
     </div>
   </div>
@@ -40,7 +53,6 @@ const cardClasses = computed(() => {
 .v-card-content {
   width: 100%;
   height: 100%;
-  padding: 12px;
   overflow-y: auto;
 }
 .v-card-border {
@@ -48,5 +60,15 @@ const cardClasses = computed(() => {
 }
 .v-card-shadow {
   box-shadow: 0 2px 8px 0 var(--card-shadow-color);
+}
+
+.v-card-overflow-auto {
+  overflow-y: auto;
+}
+.v-card-overflow-scroll {
+  overflow-y: scroll;
+}
+.v-card-overflow-hidden {
+  overflow-y: hidden;
 }
 </style>

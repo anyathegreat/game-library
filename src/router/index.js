@@ -7,6 +7,7 @@ import GameDetailsPage from "@/pages/GameDetailsPage.vue";
 import CatsGalleryPage from "@/pages/CatsGalleryPage.vue";
 import DogsGalleryPage from "@/pages/DogsGalleryPage.vue";
 import SettingsPage from "@/pages/SettingsPage.vue";
+import GamesSearchPage from "@/pages/GamesSearchPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,10 @@ const router = createRouter({
         {
           path: "/game-details",
           component: GameDetailsPage,
+        },
+        {
+          path: "/games-catalog",
+          component: GamesSearchPage,
         },
         {
           path: "/cats-gallery",
