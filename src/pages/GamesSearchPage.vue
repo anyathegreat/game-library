@@ -1,10 +1,15 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import BaseCard from "@/components/BaseCard.vue";
 import { fakeGamesListResponse } from "@/data/fakeGamesList.js";
 
 const gamesList = ref(fakeGamesListResponse?.results || []);
-console.log(gamesList.value);
+
+const squareImageUrl = computed(() => {
+  return (url) => {
+    return url.replace("square_mini", "square_medium");
+  };
+});
 </script>
 
 <template>
@@ -16,7 +21,10 @@ console.log(gamesList.value);
       </aside>
       <div class="v-page-games-list">
         <BaseCard v-for="game in gamesList" :key="game.id" vOverflow="hidden" class="v-page-card">
-          <img :src="game.image.super_url" alt="" />
+          <img :src="squareImageUrl(game.image.tiny_url)" alt="" />
+          <div class="game-title">
+            <h3>{{ game.name }}</h3>
+          </div>
         </BaseCard>
       </div>
     </div>
@@ -45,15 +53,41 @@ console.log(gamesList.value);
 .v-page-card {
   display: flex;
   flex-direction: column;
-  height: 174px;
+  gap: 0;
+  /* height: 258px; */
   background-color: #39393b;
   cursor: pointer;
   transition: all 0.3s ease 0s;
 
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  & .game-title {
+    border-top: 2px solid var(--game-title-border-color);
+    margin-top: -2px;
+    padding: 0px 6px;
+    font-size: 1rem;
+    line-height: 1.1rem;
+    width: 100%;
+    height: calc(3.3rem + 4px);
+    word-wrap: break-word;
+    overflow: hidden;
+
+    background-color: var(--game-title-bg-color);
+    color: var(--game-title-text-color);
+
+    & h3 {
+      text-align: center;
+      height: 100%;
+      max-height: 100%;
+    }
+  }
+
   & img {
     width: 100%;
-    height: 100%;
-    object-fit: scale-down;
+    /* height: calc(100% - 58px); */
+    object-fit: fill;
   }
 }
 </style>

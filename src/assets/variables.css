@@ -129,6 +129,10 @@ body {
   --card-text-color: var(--onSurface);
   --card-shadow-color: var(--outlineVariant);
 
+  --game-title-bg-color: var(--surfaceContainer);
+  --game-title-text-color: var(--onSurface);
+  --game-title-border-color: var(--surfaceVariant);
+
   /* BUTTON */
   --button-bg-color-primary: var(--primaryContainer);
   --button-text-color-primary: var(--onPrimaryContainer);
