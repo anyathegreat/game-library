@@ -3,7 +3,7 @@ import { AxiosClient } from "@/services/AxiosClient";
 
 const API_URL = config.GAMES_API_URL;
 const API_KEY = config.GAMES_API_KEY;
-const HEADERS = { Accept: "", "Access-Control-Allow-Origin": "", "Access-Control-Allow-Headers": "" };
+const HEADERS = {};
 
 class GamesService extends AxiosClient {
   constructor(url, baseHeaders) {
