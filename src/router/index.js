@@ -21,7 +21,7 @@ const router = createRouter({
           component: HomePage,
         },
         {
-          path: "/game-details",
+          path: "/game-details/:id",
           component: GameDetailsPage,
         },
         {

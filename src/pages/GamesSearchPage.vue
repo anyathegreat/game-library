@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
+import router from "@/router";
 import BaseCard from "@/components/BaseCard.vue";
 import { fakeGamesListResponse } from "@/data/fakeGamesList.js";
 
@@ -10,6 +11,10 @@ const squareImageUrl = computed(() => {
     return url.replace("square_mini", "square_medium");
   };
 });
+
+const handleOpenDetails = (id) => {
+  router.push(`/game-details/${id}`);
+};
 </script>
 
 <template>
@@ -20,7 +25,13 @@ const squareImageUrl = computed(() => {
         <BaseCard vShadow :vBorder="false"></BaseCard>
       </aside>
       <div class="v-page-games-list">
-        <BaseCard v-for="game in gamesList" :key="game.id" vOverflow="hidden" class="v-page-card">
+        <BaseCard
+          v-for="game in gamesList"
+          :key="game.id"
+          vOverflow="hidden"
+          class="v-page-card"
+          @click="handleOpenDetails(game.id)"
+        >
           <img :src="squareImageUrl(game.image.tiny_url)" alt="" />
           <div class="game-title">
             <h3>{{ game.name }}</h3>
@@ -65,7 +76,7 @@ const squareImageUrl = computed(() => {
 
   & .game-title {
     border-top: 2px solid var(--game-title-border-color);
-    padding: 0px 6px;
+    padding: 2px 6px;
     font-size: 1rem;
     line-height: 1.1rem;
     width: 100%;
