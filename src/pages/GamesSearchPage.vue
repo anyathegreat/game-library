@@ -65,7 +65,6 @@ const squareImageUrl = computed(() => {
 
   & .game-title {
     border-top: 2px solid var(--game-title-border-color);
-    margin-top: -2px;
     padding: 0px 6px;
     font-size: 1rem;
     line-height: 1.1rem;
@@ -88,6 +87,7 @@ const squareImageUrl = computed(() => {
     width: 100%;
     /* height: calc(100% - 58px); */
     object-fit: fill;
+    vertical-align: middle;
   }
 }
 </style>
