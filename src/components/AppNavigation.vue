@@ -3,7 +3,6 @@
 <template>
   <nav class="v-nav">
     <RouterLink class="v-nav-item" to="/">Home</RouterLink>
-    <RouterLink class="v-nav-item" to="/game-details">Game Details</RouterLink>
     <RouterLink class="v-nav-item" to="/games-catalog">Catalog</RouterLink>
     <RouterLink class="v-nav-item" to="/cats-gallery">Cats Gallery</RouterLink>
     <RouterLink class="v-nav-item" to="/dogs-gallery">Dogs Gallery</RouterLink>

@@ -1,4 +1,4 @@
-export const gameDetails = {
+export const fakeGameDetails = {
   error: "OK",
   limit: 1,
   offset: 0,
