@@ -1,13 +1,15 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-// import { GamesService } from "@/services";
+import { GamesService } from "@/services";
 import { notification } from "@/utils";
-import { fakeGameDetails } from "@/data/fakeGameDetails";
+// import { fakeGameDetails } from "@/data/fakeGameDetails";
 import BaseCarousel from "@/components/BaseCarousel.vue";
+import BaseSpinner from "@/components/BaseSpinner.vue";
 
 const navigation = useRoute();
 const gameDetails = ref(null);
+const loading = ref(true);
 
 const gameDescription = computed(() => {
   return (
@@ -31,54 +33,65 @@ function arrayToSeparateString(list, field, separator = " \\ ") {
   return list.map((item) => item?.[field] || "").join(separator);
 }
 
-onMounted(() => {
+onMounted(async () => {
   if (navigation?.params?.id) {
-    gameDetails.value = fakeGameDetails.results;
-    // GamesService.getGameDetails(navigation.params.id);
+    // gameDetails.value = fakeGameDetails.results;
+    try {
+      const response = await GamesService.getGameDetails(navigation.params.id);
+      gameDetails.value = response?.data?.results || null;
+      loading.value = false;
+    } catch (error) {
+      notification.error(error);
+      console.log(error);
+    }
   } else {
     notification.error(`Invalid game ID`);
   }
+  loading.value = false;
 });
 </script>
 
 <template>
-  <h1>{{ gameDetails?.name }}</h1>
-  <div class="page-section article-info">
-    <span>🕓 Обновлено: {{ gameDetails?.date_last_updated }}</span>
-  </div>
-  <div class="page-section game-info-container">
-    <div class="game-img-container">
-      <img :src="gameDetails?.image?.medium_url" alt="" />
+  <template v-if="loading"><BaseSpinner vSize="lg" /></template>
+  <template v-else>
+    <h1>{{ gameDetails?.name }}</h1>
+    <div class="page-section article-info">
+      <span>🕓 Обновлено: {{ gameDetails?.date_last_updated }}</span>
     </div>
-    <div class="game-basic-container">
-      <div class="game-basic-info">
-        <div class="game-basic-info-row">
-          <span>Год выпуска: </span>
-          <span>{{ gameDetails?.original_release_date }}</span>
+    <div class="page-section game-info-container">
+      <div class="game-img-container">
+        <img :src="gameDetails?.image?.medium_url" alt="" />
+      </div>
+      <div class="game-basic-container">
+        <div class="game-basic-info">
+          <div class="game-basic-info-row">
+            <span>Год выпуска: </span>
+            <span>{{ gameDetails?.original_release_date || "N/A" }}</span>
+          </div>
+          <div class="game-basic-info-row">
+            <span>Жанр: </span>
+            <span>{{ arrayToSeparateString(gameDetails?.genres, "name") }}</span>
+          </div>
+          <div class="game-basic-info-row">
+            <span>Разработчик: </span>
+            <span>{{ arrayToSeparateString(gameDetails?.developers, "name") }}</span>
+          </div>
+          <div class="game-basic-info-row">
+            <span>Издательство: </span>
+            <span>{{ arrayToSeparateString(gameDetails?.publishers, "name") }}</span>
+          </div>
+          <div class="game-basic-info-row">
+            <span>Платформа: </span>
+            <span>{{ arrayToSeparateString(gameDetails?.platforms, "name") }}</span>
+          </div>
         </div>
-        <div class="game-basic-info-row">
-          <span>Жанр: </span>
-          <span>{{ arrayToSeparateString(gameDetails?.genres, "name") }}</span>
-        </div>
-        <div class="game-basic-info-row">
-          <span>Разработчик: </span>
-          <span>{{ arrayToSeparateString(gameDetails?.developers, "name") }}</span>
-        </div>
-        <div class="game-basic-info-row">
-          <span>Издательство: </span>
-          <span>{{ arrayToSeparateString(gameDetails?.publishers, "name") }}</span>
-        </div>
-        <div class="game-basic-info-row">
-          <span>Платформа: </span>
-          <span>{{ arrayToSeparateString(gameDetails?.platforms, "name") }}</span>
+        <div class="game-basic-gallery">
+          <BaseCarousel v-model="gameImages" />
         </div>
       </div>
-      <div class="game-basic-gallery">
-        <BaseCarousel v-model="gameImages" />
-      </div>
     </div>
-  </div>
-  <div class="page-section game-description-container" v-html="gameDescription"></div>
+    <div class="page-section game-description-container" v-html="gameDescription"></div>
+  </template>
 </template>
 
 <style scoped lang="scss">
@@ -106,6 +119,9 @@ onMounted(() => {
 }
 
 .game-img-container {
+  background-color: var(--surfaceVariant);
+  padding: 4px;
+  border-radius: 4px;
   min-width: 300px;
   width: 300px;
   height: 372px;
@@ -268,6 +284,7 @@ onMounted(() => {
       margin-left: 50%;
       transform: translateX(-50%);
       max-height: 320px;
+      max-width: 100%;
       border-radius: 4px;
       object-fit: scale-down;
     }

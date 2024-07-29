@@ -9,6 +9,8 @@ export default defineConfig({
   envDir: ".",
   server: {
     open: true,
+    port: 3100,
+    strictPort: true,
   },
   plugins: [vue()],
   resolve: {

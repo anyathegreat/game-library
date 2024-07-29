@@ -30,7 +30,7 @@ const handleOpenDetails = (id) => {
           :key="game.id"
           vOverflow="hidden"
           class="v-page-card"
-          @click="handleOpenDetails(game.id)"
+          @click="handleOpenDetails(game.guid)"
         >
           <img :src="squareImageUrl(game.image.tiny_url)" alt="" />
           <div class="game-title">
