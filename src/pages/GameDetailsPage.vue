@@ -10,11 +10,19 @@ const navigation = useRoute();
 const gameDetails = ref(null);
 
 const gameDescription = computed(() => {
-  return gameDetails?.value?.description || "";
+  return (
+    gameDetails?.value?.description
+      ?.replaceAll(`src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="`, "")
+      ?.replaceAll(/style="width: \d*px"/gi, "")
+      ?.replaceAll(/href="\S*"/gi, `href="#"`)
+      ?.replaceAll("data-src", "src") || ""
+  );
 });
+
 const gameImages = computed(() => {
   return gameDetails?.value?.images?.map((item) => item?.medium_url) || [];
 });
+
 function arrayToSeparateString(list, field, separator = " \\ ") {
   if (!Array.isArray(list) || !field) {
     return "N/A";
@@ -66,7 +74,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="game-basic-gallery">
-        <BaseCarousel :vImages="gameImages" />
+        <BaseCarousel v-model="gameImages" />
       </div>
     </div>
   </div>
@@ -81,14 +89,26 @@ onMounted(() => {
   width: 100%;
   margin-bottom: 14px;
 }
+
+.game-basic-container {
+  flex-grow: 1;
+  /* width: 100%; */
+}
+
 .game-info-container {
   display: flex;
   gap: 14px;
   width: 100%;
 }
+
+.game-basic-info-row {
+  word-wrap: break-word;
+}
+
 .game-img-container {
+  min-width: 300px;
   width: 300px;
-  height: 300px;
+  height: 372px;
 
   & img {
     width: 100%;
@@ -102,8 +122,11 @@ onMounted(() => {
   gap: 14px;
 }
 .game-basic-gallery {
+  position: relative;
   width: 100%;
-  height: 240px;
+  max-width: 480px;
+  height: 280px;
+  max-height: 300px;
 }
 </style>
 
@@ -114,6 +137,7 @@ onMounted(() => {
     font-weight: bold;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    clear: both;
   }
 
   & h3 {
@@ -122,6 +146,7 @@ onMounted(() => {
     margin-bottom: 0.5rem;
     margin-top: 1rem;
     color: var(--onSurfaceVariant);
+    clear: both;
   }
 
   & h4 {
@@ -130,9 +155,7 @@ onMounted(() => {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
     color: var(--onSurfaceVariant);
-  }
-  & p {
-    margin-bottom: 1rem;
+    clear: both;
   }
 
   & table {
@@ -143,6 +166,41 @@ onMounted(() => {
     & th {
       border: 1px solid var(--onSurfaceVariant);
       padding: 2px;
+      position: relative;
+
+      & figure {
+        padding: 8px;
+        position: relative;
+        max-width: 100px;
+        width: 100%;
+
+        background-color: transparent !important;
+        float: none !important;
+        clear: none !important;
+        margin: 0 !important;
+
+        & a {
+          padding: 0 !important;
+        }
+
+        & img {
+          margin-left: 50%;
+          transform: translateX(-50%);
+          height: 100%;
+          width: 100%;
+          max-width: 80px;
+          max-height: 100px;
+          border-radius: 4px;
+
+          object-fit: scale-down;
+        }
+
+        & figcaption {
+          margin-top: 0.5rem;
+          text-align: center;
+          color: var(--onSurfaceVariant);
+        }
+      }
     }
   }
 
@@ -158,6 +216,66 @@ onMounted(() => {
 
     &:visited {
       color: var(--onTertiaryContainer);
+    }
+  }
+
+  & p {
+    margin-bottom: 1rem;
+  }
+
+  & p:has(+ figure[data-align="right"]) {
+    clear: left;
+  }
+
+  & p:has(+ figure[data-align="left"]) {
+    clear: right;
+  }
+
+  & figure[data-align="right"] + p {
+    clear: left;
+  }
+
+  & figure[data-align="left"] + p {
+    clear: right;
+  }
+
+  & figure {
+    padding: 8px;
+    position: relative;
+    max-width: 500px;
+    background-color: var(--surfaceContainer);
+
+    margin: 0 0 1rem 0;
+
+    &[data-align="right"] {
+      float: right;
+      clear: left;
+
+      margin-left: 1rem;
+    }
+
+    &[data-align="left"] {
+      float: left;
+      clear: right;
+      margin-right: 1rem;
+    }
+
+    & a {
+      padding: 0 !important;
+    }
+
+    & img {
+      margin-left: 50%;
+      transform: translateX(-50%);
+      max-height: 320px;
+      border-radius: 4px;
+      object-fit: scale-down;
+    }
+
+    & figcaption {
+      margin-top: 0.5rem;
+      text-align: center;
+      color: var(--onSurfaceVariant);
     }
   }
 }
