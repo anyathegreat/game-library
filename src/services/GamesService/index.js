@@ -1,7 +1,8 @@
 import { config } from "@/_config";
 import { AxiosClient } from "@/services/AxiosClient";
 
-const PROXY_URL = config.GAMES_API_PROXY_URL || "https://thingproxy.freeboard.io/fetch";
+const PROXY_URL = config.GAMES_API_PROXY_URL || "https://icy-brook-c5a6.ytar-99.workers.dev/?apiurl=";
+// ||"https://thingproxy.freeboard.io/fetch";
 const API_URL = config.GAMES_API_URL;
 const API_KEY = config.GAMES_API_KEY;
 const HEADERS = {};
@@ -13,7 +14,7 @@ class GamesService extends AxiosClient {
   }
 
   getGameDetails(id) {
-    const path = `${PROXY_URL}/${API_URL}/game/${id}/?api_key=${API_KEY}&format=json`;
+    const path = PROXY_URL + encodeURIComponent(`${API_URL}/game/${id}/?api_key=${API_KEY}&format=json`);
     return this.client.get(path);
   }
 }

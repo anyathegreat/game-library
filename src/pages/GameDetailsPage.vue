@@ -41,7 +41,7 @@ onMounted(async () => {
       gameDetails.value = response?.data?.results || null;
       loading.value = false;
     } catch (error) {
-      notification.error(error);
+      notification.error(error?.message || `Something went wrong`);
       console.log(error);
     }
   } else {
