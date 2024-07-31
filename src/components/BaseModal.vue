@@ -1,24 +1,52 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
-const { vFullscreen } = defineProps({
+const zoom = ref(false);
+const emit = defineEmits(["close"]);
+
+const { vFullscreen, vBackdrop } = defineProps({
   vFullscreen: {
+    type: Boolean,
+    default: false,
+  },
+  vBackdrop: {
     type: Boolean,
     default: false,
   },
 });
 
-const modalClasses = computed(() => {
+const overlayClasses = computed(() => {
   return {
     "v-modal-overlay": true,
     "v-modal-overlay-fullscreen": vFullscreen,
   };
 });
+
+const modalClasses = computed(() => {
+  return {
+    "v-modal": true,
+    zoom: zoom.value,
+  };
+});
+
+function handleClose(event) {
+  if (!vBackdrop) {
+    emit("close");
+  } else {
+    if (event.target === event.currentTarget) {
+      zoom.value = true;
+
+      setTimeout(() => {
+        zoom.value = false;
+      }, 300);
+    }
+  }
+}
 </script>
 
 <template>
-  <div :class="modalClasses">
-    <div class="v-modal">
+  <div :class="overlayClasses" @click="handleClose">
+    <div :class="modalClasses">
       <slot name="header"></slot>
       <slot name="content"></slot>
       <slot name="footer"></slot>
@@ -49,5 +77,21 @@ const modalClasses = computed(() => {
   overflow: hidden;
   background-color: var(--surface);
   border-radius: 8px;
+}
+
+.zoom {
+  animation: zoom 0.3s;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

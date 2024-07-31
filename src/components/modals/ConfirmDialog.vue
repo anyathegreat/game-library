@@ -11,11 +11,10 @@ function handleCancel() {
 function handleSubmit() {
   emit("onSubmit");
 }
-console.log(emit);
 </script>
 
 <template>
-  <BaseModal>
+  <BaseModal @close="handleCancel">
     <template #header>
       <div class="v-modal-header">
         <button @click="handleCancel">X</button>
