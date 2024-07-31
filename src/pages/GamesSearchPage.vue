@@ -1,10 +1,10 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import router from "@/router";
 import BaseCard from "@/components/BaseCard.vue";
-import { fakeGamesListResponse } from "@/data/fakeGamesList.js";
+import { fakePagesArray } from "@/data/fakeGamesList.js";
 
-const gamesList = ref(fakeGamesListResponse?.results || []);
+const gamesList = ref([]);
 
 const squareImageUrl = computed(() => {
   return (url) => {
@@ -15,6 +15,10 @@ const squareImageUrl = computed(() => {
 const handleOpenDetails = (id) => {
   router.push(`/game-details/${id}`);
 };
+
+onMounted(() => {
+  gamesList.value = fakePagesArray[0]?.results || [];
+});
 </script>
 
 <template>
